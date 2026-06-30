@@ -5,20 +5,20 @@
 
 import type { AdSkin } from '@/lib/ads/ad-frame'
 
-// Site-wide default skin — tune to your brand.
+// Site-wide default skin — tuned to the dark/lime brand.
 export const adSkin: AdSkin = {
-  radius: '16px',
-  border: '1px solid rgba(0,0,0,0.06)',
-  shadow: '0 8px 30px rgba(0,0,0,0.06)',
-  background: '#ffffff',
-  labelClassName: 'bg-[#FF6600] text-white',
+  radius: '24px',
+  border: '1px solid rgba(255,255,255,0.10)',
+  shadow: '0 30px 80px -40px rgba(0,0,0,0.95)',
+  background: '#101310',
+  labelClassName: 'bg-[#c6f24e] text-[#0a0c0a]',
 }
 
 // Optional per-slot overrides — adjust only where you need to.
 export const adSkinBySlot: Partial<Record<string, AdSkin>> = {
-  sidebar: { radius: '12px', shadow: 'none', border: '1px solid rgba(0,0,0,0.08)' },
-  popup: { radius: '24px' },
-  header: { radius: '20px', background: '#FFF9F2' },
+  sidebar: { radius: '20px', shadow: 'none', border: '1px solid rgba(255,255,255,0.10)' },
+  popup: { radius: '28px' },
+  header: { radius: '24px', background: '#0e110d' },
 }
 
 /** Merge site default + per-slot override for a slot. */

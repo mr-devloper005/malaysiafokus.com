@@ -32,24 +32,26 @@ export type TaskTheme = {
   radius: string
 }
 
-const YELP_FONT = "'Inter', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+const DISPLAY_FONT = "'Space Grotesk', 'Syne', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+const BODY_FONT = "'Inter', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
 
-// Shared Yelp palette — every task inherits this; only kicker/note differ.
+// Shared dark/lime palette — every task inherits this premium identity; only
+// kicker/note differ so each surface keeps a little voice.
 const base = {
-  dark: false,
-  fontDisplay: YELP_FONT,
-  fontBody: YELP_FONT,
-  bg: '#ffffff',
-  surface: '#ffffff',
-  raised: '#f7f7f7',
-  text: '#1a1a1a',
-  muted: '#6b6b6b',
-  line: '#e6e6e6',
-  accent: '#d32323',
-  accentSoft: '#fdecec',
-  onAccent: '#ffffff',
-  glow: 'rgba(211,35,35,0.06)',
-  radius: '0.75rem',
+  dark: true,
+  fontDisplay: DISPLAY_FONT,
+  fontBody: BODY_FONT,
+  bg: '#0a0c0a',
+  surface: '#101310',
+  raised: '#171b16',
+  text: '#f2f4ec',
+  muted: '#9ba69a',
+  line: 'rgba(255,255,255,0.10)',
+  accent: '#c6f24e',
+  accentSoft: '#1a2611',
+  onAccent: '#0a0c0a',
+  glow: 'rgba(198,242,78,0.10)',
+  radius: '1.25rem',
 } satisfies Omit<TaskTheme, 'kicker' | 'note'>
 
 export const taskThemes: Record<TaskKey, TaskTheme> = {
@@ -57,9 +59,9 @@ export const taskThemes: Record<TaskKey, TaskTheme> = {
   listing: { ...base, kicker: 'Businesses', note: 'Find, compare and connect with local businesses.' },
   classified: { ...base, kicker: 'Marketplace', note: 'Fresh offers and listings, ready to act on.' },
   image: { ...base, kicker: 'Photos', note: 'A visual feed of standout images and galleries.' },
-  sbm: { ...base, kicker: 'Bookmarks', note: 'Curated resources and links worth saving.' },
+  sbm: { ...base, kicker: 'Collections', note: 'Hand-picked Malaysian resources, links and references worth keeping.' },
   pdf: { ...base, kicker: 'Documents', note: 'Downloadable guides, reports and references.' },
-  profile: { ...base, kicker: 'People', note: 'Discover creators, businesses and profiles.' },
+  profile: { ...base, kicker: 'Curators', note: 'The people and teams behind the collections.' },
 }
 
 export function getTaskTheme(task: TaskKey): TaskTheme {

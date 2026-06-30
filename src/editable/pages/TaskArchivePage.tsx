@@ -6,6 +6,8 @@ import { fetchPaginatedTaskPosts, buildPostUrl } from '@/lib/task-data'
 import { getTaskConfig, type TaskKey } from '@/lib/site-config'
 import type { SiteFeedPagination, SitePost } from '@/lib/site-connector'
 import { taskPageMetadata } from '@/config/site.content'
+import { Ads } from '@/lib/ads'
+import { pickRandomAdSlot } from '@/editable/ads/ad-placement'
 import { taskPageVoices } from '@/editable/content/task-pages.content'
 import { EditableSiteShell } from '@/editable/shell/EditableSiteShell'
 import { getTaskTheme, taskThemeStyle } from '@/editable/theme/task-themes'
@@ -92,6 +94,8 @@ export function TaskArchiveView({ task, posts, pagination, category, basePath }:
   const page = pagination.page || 1
   const label = taskConfig?.label || task
   const categoryLabel = category === 'all' ? 'All categories' : CATEGORY_OPTIONS.find((item) => item.slug === category)?.name || category
+  // One panel-driven ad per archive page, on a randomly chosen approved slot.
+  const adSlot = pickRandomAdSlot()
 
   return (
     <EditableSiteShell>
@@ -151,6 +155,12 @@ export function TaskArchiveView({ task, posts, pagination, category, basePath }:
               <p className="mt-2 text-sm leading-6 text-[var(--tk-muted)]">Try another category, or check back after new {label.toLowerCase()} are published.</p>
             </div>
           )}
+
+          {posts.length ? (
+            <div className="mt-14">
+              <Ads slot="in-feed" showLabel className="mx-auto w-full" />
+            </div>
+          ) : null}
 
           {posts.length ? (
             <nav className="mt-16 flex items-center justify-center gap-3 text-sm">
